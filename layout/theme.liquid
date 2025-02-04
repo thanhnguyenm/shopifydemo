@@ -283,26 +283,59 @@
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
-    <a class="skip-to-content-link button visually-hidden" href="#MainContent">
-      {{ 'accessibility.skip_to_text' | t }}
-    </a>
+    <a name="top" id="top"></a>
 
-    {%- if settings.cart_type == 'drawer' -%}
-      {%- render 'cart-drawer' -%}
-    {%- endif -%}
+    <div class="site-container">
+    
+      <header id="SiteHeader" class="site-header u-headerController">
+        <div class="site-header-narrow__overlay" id="PageOverlayNarrow" hidden=""></div>
+        <nav class="handy-nav | u-hide u-show@wide" aria-label="Handy.">
+          <ul class="handy-nav__layout | nav-horizontal nav-horizontal--right | u-center u-row-width">
+                <li class="handy-nav__item | nav-horizontal__item">
+                  <span class="handy-nav__link handy-nav__link--level1 | labelled-icon | u-focus-keyboard--inner">
+                    <svg class="handy-nav__icon handy-nav__icon--level1" role="img" focusable="false" width="24" height="24" aria-hidden="true">
+                      <use class="sprite sprite--front" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/theme/images/sprites__evo--25481a7f3c6f7ac71394be5578e7b2c5.svg#usp-free-delivery"></use>
+                    </svg>						
+                    <span class="handy-nav__link-text">free shipping on orders $70+</span>
+                  </span>
+                </li>
+                <li class="handy-nav__item | nav-horizontal__item">
+                  <span class="handy-nav__link handy-nav__link--level1 | labelled-icon | u-focus-keyboard--inner">
+                    <svg class="handy-nav__icon handy-nav__icon--level1" role="img" focusable="false" width="24" height="24" aria-hidden="true">
+                      <use class="sprite sprite--front" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/theme/images/sprites__evo--25481a7f3c6f7ac71394be5578e7b2c5.svg#afterpay-available-bw"></use>
+                    </svg>
+                    <span class="handy-nav__link-text">afterpay available on orders $65+</span>
+                  </span>
+                </li>
+                <li class="handy-nav__item | nav-horizontal__item">
+                  <span class="handy-nav__link handy-nav__link--level1 | labelled-icon | u-focus-keyboard--inner">
+                    <svg class="handy-nav__icon handy-nav__icon--level1" role="img" focusable="false" width="24" height="24" aria-hidden="true">
+                      <use class="sprite sprite--front" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/static/theme/images/sprites__evo--25481a7f3c6f7ac71394be5578e7b2c5.svg#peta-accredited-bw"></use>
+                    </svg>						
+                    <span class="handy-nav__link-text">peta accredited cruelty-free</span>
+                  </span>
+                </li>
+                <li class="handy-nav__item | nav-horizontal__item">
+                  <button type="button" data-open-modaal="" data-modaal-content-source="#location-selection-modal" data-modaal-animation="fade" data-modaal-custom-class="server-message__modal" class="handy-nav__link handy-nav__link--level1 handy-nav__link--before-divider | u-focus-keyboard--inner" data-modaal-scope="modaal_1738684797269b10d833ba5c07"><span class="handy-nav__link-text">au</span></button>
+                </li>
+          </ul>
+        </nav>
+      </header>
+      
+      {% comment %} {% sections 'header-group' %} {% endcomment %}
 
-    {% sections 'header-group' %}
+      <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+        {{ content_for_layout }}
+      </main>
 
-    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
-      {{ content_for_layout }}
-    </main>
+      {% sections 'footer-group' %}
 
-    {% sections 'footer-group' %}
+      <ul hidden>
+        <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
+        <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
+      </ul>
 
-    <ul hidden>
-      <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
-      <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
-    </ul>
+    </div>
 
     <script>
       window.shopUrl = '{{ request.origin }}';
